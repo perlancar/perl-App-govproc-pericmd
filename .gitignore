@@ -1,0 +1,4 @@
+App-govproc-pericmd-*
+.build
+*~
+nytprof*
