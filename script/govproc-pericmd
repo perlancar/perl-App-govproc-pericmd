@@ -1,0 +1,35 @@
+#!perl
+
+# DATE
+# VERSION
+
+use 5.010001;
+use strict;
+use warnings;
+
+use Perinci::CmdLine::Any;
+
+Perinci::CmdLine::Any->new(
+    url => '/Proc/Govern/govern_process',
+    log => 1,
+)->run;
+
+# ABSTRACT: Perinci::CmdLine-based variant of govproc CLI
+
+=head1 SYNOPSIS
+
+Use as you would use L<govproc>:
+
+ % govproc-pericmd --euid tono --timeout '2.5 hours' ...
+
+
+=head1 DESCRIPTION
+
+This script is just like L<govproc> but uses the L<Perinci::CmdLine> CLI
+framework to give you conveniences like shell tab completion and argument
+coercions (see the above example in Synopsis).
+
+
+=head1 SEE ALSO
+
+L<govproc>
