@@ -15,6 +15,7 @@ Perinci::CmdLine::Any->new(
 )->run;
 
 # ABSTRACT: Perinci::CmdLine-based variant of govproc CLI
+# PODNAME:
 
 =head1 SYNOPSIS
 
