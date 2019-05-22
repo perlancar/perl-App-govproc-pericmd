@@ -8,9 +8,25 @@ use strict;
 use warnings;
 
 use Perinci::CmdLine::Any;
+use Perinci::Sub::Util qw(gen_modified_sub);
+use Proc::Govern;
+
+my $res = gen_modified_sub(
+    output_name => 'govproc',
+    base_name   => 'Proc::Govern::govern_process',
+    modify_meta => sub {
+        $_[0]{result_naked} = 0;
+    },
+    output_code => sub {
+        my %args = @_;
+        my $exit_code = Proc::Govern::govern_process(%args);
+        [200, "OK", '', {'cmdline.exit_code' => $exit_code}];
+    },
+);
+$res->[0] == 200 or die "Can't generate modified sub: $res->[0] - $res->[1]";
 
 Perinci::CmdLine::Any->new(
-    url => '/Proc/Govern/govern_process',
+    url => '/main/govproc',
     log => 1,
 )->run;
 
